@@ -5,8 +5,8 @@ import { useAppDispatch, useAppSelector } from "./redux/hook";
 function App() {
   const dispatch = useAppDispatch();
   const { count } = useAppSelector((state) => state.counter);
-  const incrementHandler = () => {
-    dispatch(increment());
+  const incrementHandler = (amount: number) => {
+    dispatch(increment(amount));
   };
   const decrementHandler = () => {
     dispatch(decrement());
@@ -19,8 +19,17 @@ function App() {
           Decrement
         </button>
         <span>{count}</span>
-        <button aria-label="Increment value" onClick={incrementHandler}>
+        <button
+          aria-label="Increment value"
+          onClick={() => incrementHandler(1)}
+        >
           Increment
+        </button>
+        <button
+          aria-label="Increment value"
+          onClick={() => incrementHandler(5)}
+        >
+          Increment by 5
         </button>
       </div>
     </>
