@@ -1,4 +1,4 @@
-import "./App.css";
+import { Button } from "./components/ui/button";
 import { decrement, increment } from "./redux/features/counter/counterSlice";
 import { useAppDispatch, useAppSelector } from "./redux/hook";
 
@@ -15,22 +15,22 @@ function App() {
     <>
       <h1>Redux</h1>
       <div className="card">
-        <button aria-label="Decrement value" onClick={decrementHandler}>
+        <Button aria-label="Decrement value" onClick={decrementHandler}>
           Decrement
-        </button>
-        <span>{count}</span>
-        <button
+        </Button>
+        <span className="mx-4">{count}</span>
+        <Button
           aria-label="Increment value"
           onClick={() => incrementHandler(1)}
         >
           Increment
-        </button>
-        <button
+        </Button>
+        <Button
           aria-label="Increment value"
           onClick={() => incrementHandler(5)}
         >
           Increment by 5
-        </button>
+        </Button>
       </div>
     </>
   );
