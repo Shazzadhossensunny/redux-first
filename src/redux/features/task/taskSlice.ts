@@ -11,7 +11,7 @@ const initialState: TInitialState = {
   tasks: [
     {
       id: "ajlkjjlkjj",
-      title: "This is Task 1",
+      title: "This is Task",
       description: "This is task one please complete as soon as possible",
       status: false,
       priority: "Medium",

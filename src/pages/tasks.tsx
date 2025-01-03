@@ -18,7 +18,11 @@ export const Tasks = () => {
           Add Task
         </button>
       </div>
-      <TaskCard />
+      <div className="space-y-4">
+        {tasks.map((task) => (
+          <TaskCard key={task.id} task={task}></TaskCard>
+        ))}
+      </div>
     </div>
   );
 };
