@@ -4,7 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 type TInitialState = {
   tasks: TTask[];
-  filter: "all" | "High" | "Medium" | "Low";
+  filter: "All" | "High" | "Medium" | "Low";
 };
 
 const initialState: TInitialState = {
@@ -18,7 +18,7 @@ const initialState: TInitialState = {
       dueDate: "12-2025",
     },
   ],
-  filter: "all",
+  filter: "All",
 };
 
 const taskSlice = createSlice({

@@ -5,29 +5,31 @@ import { TTask } from "@/type";
 export const TaskCard = ({ task }: { task: TTask }) => {
   return (
     <div className="border rounded-lg shadow-md p-4 flex items-start gap-4">
-      {/* Priority Indicator */}
+      <div className="flex flex-1 gap-2">
+        {/* Priority Indicator */}
 
-      <div
-        className={cn(
-          "w-2 h-2 rounded mt-2",
-          task.priority === "High" && "bg-red-500",
-          task.priority === "Medium" && "bg-yellow-500",
-          task.priority === "Low" && "bg-green-500"
-        )}
-        title={`Priority: ${task.priority}`}
-      ></div>
+        <div
+          className={cn(
+            "size-3 rounded mt-2",
+            task.priority === "High" && "bg-red-500",
+            task.priority === "Medium" && "bg-yellow-500",
+            task.priority === "Low" && "bg-green-500"
+          )}
+          title={`Priority: ${task.priority}`}
+        ></div>
 
-      {/* Task Details */}
-      <div className="flex-1">
-        <h3 className="text-lg font-semibold">{task.title}</h3>
-        <p className="text-sm text-gray-600">{task.description}</p>
-        <div className="mt-2 flex justify-between text-sm">
-          <span>
-            <strong>Status:</strong> {task.status}
-          </span>
-          <span>
-            <strong>Due Date:</strong> {task.dueDate}
-          </span>
+        {/* Task Details */}
+        <div className="flex-1">
+          <h3 className="text-lg font-semibold">{task.title}</h3>
+          <p className="text-sm text-gray-600">{task.description}</p>
+          <div className="mt-2 flex justify-between text-sm">
+            <span>
+              <strong>Status:</strong> {task.isCompleted}
+            </span>
+            <span>
+              <strong>Due Date:</strong> {task.dueDate}
+            </span>
+          </div>
         </div>
       </div>
 

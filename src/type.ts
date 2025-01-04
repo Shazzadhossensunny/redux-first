@@ -2,7 +2,7 @@ export type TTask = {
   id: string;
   title: string;
   description: string;
-  status: boolean;
+  isCompleted: boolean;
   priority: "Low" | "Medium" | "High";
   dueDate: string;
 };
