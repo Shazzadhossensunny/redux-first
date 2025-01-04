@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Trash2 } from "lucide-react";
 import { TTask } from "@/type";
+import { Checkbox } from "@/components/ui/checkbox";
 
 export const TaskCard = ({ task }: { task: TTask }) => {
   return (
@@ -38,7 +39,7 @@ export const TaskCard = ({ task }: { task: TTask }) => {
         <button className="text-red-500 hover:text-red-700" title="Delete Task">
           <Trash2 size={20} />
         </button>
-        <input type="checkbox" className="w-5 h-5" title="Toggle Status" />
+        <Checkbox />
       </div>
     </div>
   );

@@ -7,8 +7,6 @@ export const Tasks = () => {
   const tasks = useSelector(taskSelector);
   const filter = useSelector(filterSelector);
 
-  console.log(tasks);
-  console.log(filter);
   return (
     <div className="p-6">
       <div className="flex justify-between items-center mb-6">

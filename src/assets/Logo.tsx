@@ -12,7 +12,7 @@ const Logo = () => (
       r="45"
       fill="url(#gradient)"
       stroke="#38a169"
-      stroke-width="5"
+      strokeWidth="5"
     />
 
     {/* <!-- Checkmark --> */}
@@ -20,9 +20,9 @@ const Logo = () => (
       d="M30 50 L45 65 L70 40"
       fill="none"
       stroke="white"
-      stroke-width="8"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
 
     {/* <!-- Gradient --> */}
