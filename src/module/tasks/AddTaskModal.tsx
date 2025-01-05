@@ -31,18 +31,22 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
+import { addTask } from "@/redux/features/task/taskSlice";
 import { format } from "date-fns";
 
 import { CalendarIcon, PlusCircle } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 
 export const AddTaskModal = () => {
   const [open, setOpen] = useState(false);
   const form = useForm();
+  const dispatch = useDispatch();
 
   const onSubmit = (data: any) => {
     console.log(data);
+    dispatch(addTask(data));
     form.reset();
     setOpen(false);
   };
@@ -97,7 +101,7 @@ export const AddTaskModal = () => {
             />
             <FormField
               control={form.control}
-              name="email"
+              name="priority"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Priority</FormLabel>
