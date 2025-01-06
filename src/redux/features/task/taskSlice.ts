@@ -10,12 +10,13 @@ type TInitialState = {
 const initialState: TInitialState = {
   tasks: [
     {
-      id: "ajlkjjlkjj",
-      title: "This is Task",
-      description: "This is task one please complete as soon as possible",
+      id: "KlfWzuisgbWQLYUS8tyUP",
       isCompleted: false,
-      priority: "Medium",
-      dueDate: "12-2025",
+      title: "Complete the Project Documentation",
+      description:
+        "Prepare and finalize all documentation related to the project, including technical specifications and user guides.",
+      priority: "High",
+      dueDate: "2025-01-09T18:00:00.000Z",
     },
   ],
   filter: "All",
@@ -41,6 +42,16 @@ const taskSlice = createSlice({
       const taskData = createTask(action.payload);
       state.tasks.push(taskData);
     },
+    toggleTaskComplete: (state, action: PayloadAction<string>) => {
+      state.tasks.forEach((task) =>
+        task.id === action.payload
+          ? (task.isCompleted = !task.isCompleted)
+          : task
+      );
+    },
+    deleteTask: (state, action: PayloadAction<string>) => {
+      state.tasks = state.tasks.filter((task) => task.id !== action.payload);
+    },
   },
 });
 //this is best way to selector send
@@ -48,6 +59,6 @@ export const taskSelector = (state: RootState) => state.todo.tasks;
 //filter
 export const filterSelector = (state: RootState) => state.todo.filter;
 
-export const { addTask } = taskSlice.actions;
+export const { addTask, toggleTaskComplete, deleteTask } = taskSlice.actions;
 
 export default taskSlice.reducer;

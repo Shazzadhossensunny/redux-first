@@ -2,8 +2,20 @@ import { cn } from "@/lib/utils";
 import { Trash2 } from "lucide-react";
 import { TTask } from "@/type";
 import { Checkbox } from "@/components/ui/checkbox";
+import { useDispatch } from "react-redux";
+import {
+  deleteTask,
+  toggleTaskComplete,
+} from "@/redux/features/task/taskSlice";
 
 export const TaskCard = ({ task }: { task: TTask }) => {
+  const dispatch = useDispatch();
+  const handleCheck = (id: string) => {
+    dispatch(toggleTaskComplete(id));
+  };
+  const handleDelete = (id: string) => {
+    dispatch(deleteTask(id));
+  };
   return (
     <div className="border rounded-lg shadow-md p-4 flex items-start gap-4">
       <div className="flex flex-1 gap-2">
@@ -21,7 +33,14 @@ export const TaskCard = ({ task }: { task: TTask }) => {
 
         {/* Task Details */}
         <div className="flex-1 space-y-2">
-          <h3 className="text-lg font-semibold">{task.title}</h3>
+          <h3
+            className={cn(
+              "text-lg font-semibold",
+              task.isCompleted === true && "line-through"
+            )}
+          >
+            {task.title}
+          </h3>
           <p className="text-sm text-gray-600">{task.description}</p>
           {/* <div className="mt-2 flex justify-between text-sm">
             <span>
@@ -36,10 +55,17 @@ export const TaskCard = ({ task }: { task: TTask }) => {
 
       {/* Actions */}
       <div className="flex items-center gap-2">
-        <button className="text-red-500 hover:text-red-700" title="Delete Task">
+        <button
+          onClick={() => handleDelete(task.id)}
+          className="text-red-500 hover:text-red-700"
+          title="Delete Task"
+        >
           <Trash2 size={20} />
         </button>
-        <Checkbox />
+        <Checkbox
+          checked={task.isCompleted}
+          onClick={() => handleCheck(task.id)}
+        />
       </div>
     </div>
   );
