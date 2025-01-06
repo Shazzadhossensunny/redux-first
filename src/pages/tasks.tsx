@@ -1,11 +1,11 @@
 import { AddTaskModal } from "@/module/tasks/AddTaskModal";
 import { TaskCard } from "@/module/tasks/TaskCard";
-import { filterSelector, taskSelector } from "@/redux/features/task/taskSlice";
+import { taskSelector } from "@/redux/features/task/taskSlice";
 import { useSelector } from "react-redux";
 
 export const Tasks = () => {
   const tasks = useSelector(taskSelector);
-  const filter = useSelector(filterSelector);
+  // const filter = useSelector(filterSelector);
 
   return (
     <div className="p-6">

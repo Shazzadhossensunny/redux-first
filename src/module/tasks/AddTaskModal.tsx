@@ -32,11 +32,12 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { addTask } from "@/redux/features/task/taskSlice";
+import { TTask } from "@/type";
 import { format } from "date-fns";
 
 import { CalendarIcon, PlusCircle } from "lucide-react";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
 export const AddTaskModal = () => {
@@ -44,9 +45,8 @@ export const AddTaskModal = () => {
   const form = useForm();
   const dispatch = useDispatch();
 
-  const onSubmit = (data: any) => {
-    console.log(data);
-    dispatch(addTask(data));
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    dispatch(addTask(data as TTask));
     form.reset();
     setOpen(false);
   };
@@ -117,7 +117,7 @@ export const AddTaskModal = () => {
                     <SelectContent>
                       <SelectItem value="High">High</SelectItem>
                       <SelectItem value="Medium">Medium</SelectItem>
-                      <SelectItem value="low">Low</SelectItem>
+                      <SelectItem value="Low">Low</SelectItem>
                     </SelectContent>
                   </Select>
                 </FormItem>
