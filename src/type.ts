@@ -8,3 +8,8 @@ export type TTask = {
 };
 
 export type TFilter = "All" | "High" | "Medium" | "Low";
+
+export type TUser = {
+  id: string;
+  name: string;
+};
