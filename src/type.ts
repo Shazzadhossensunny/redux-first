@@ -6,3 +6,5 @@ export type TTask = {
   priority: "Low" | "Medium" | "High";
   dueDate: string;
 };
+
+export type TFilter = "All" | "High" | "Medium" | "Low";

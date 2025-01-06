@@ -1,10 +1,10 @@
 import { RootState } from "@/redux/store";
-import { TTask } from "@/type";
+import { TFilter, TTask } from "@/type";
 import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
 
 type TInitialState = {
   tasks: TTask[];
-  filter: "All" | "High" | "Medium" | "Low";
+  filter: TFilter;
 };
 
 const initialState: TInitialState = {
@@ -52,13 +52,36 @@ const taskSlice = createSlice({
     deleteTask: (state, action: PayloadAction<string>) => {
       state.tasks = state.tasks.filter((task) => task.id !== action.payload);
     },
+    // updateTask: (state, action) => {
+    //   state.tasks.forEach((task) =>
+    //     task.id === action.payload.id ? { ...task, task } : task
+    //   );
+    // },
+    updateFilter: (state, action: PayloadAction<TFilter>) => {
+      state.filter = action.payload;
+    },
   },
 });
 //this is best way to selector send
-export const taskSelector = (state: RootState) => state.todo.tasks;
-//filter
-export const filterSelector = (state: RootState) => state.todo.filter;
+export const taskSelector = (state: RootState) => {
+  const filter = state.todo.filter;
+  if (filter === "High") {
+    return state.todo.tasks.filter((task) => task.priority === "High");
+  } else if (filter === "Medium") {
+    return state.todo.tasks.filter((task) => task.priority === "Medium");
+  } else if (filter === "Low") {
+    return state.todo.tasks.filter((task) => task.priority === "Low");
+  } else {
+    return state.todo.tasks;
+  }
+};
 
-export const { addTask, toggleTaskComplete, deleteTask } = taskSlice.actions;
+//filter
+export const filterSelector = (state: RootState) => {
+  return state.todo.filter;
+};
+
+export const { addTask, toggleTaskComplete, deleteTask, updateFilter } =
+  taskSlice.actions;
 
 export default taskSlice.reducer;
