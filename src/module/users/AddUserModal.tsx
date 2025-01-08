@@ -15,6 +15,9 @@ import {
   FormLabel,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { addUser } from "@/redux/features/user/userSlice";
+import { useAppDispatch } from "@/redux/hook";
+import { TUser } from "@/type";
 import { DialogTitle } from "@radix-ui/react-dialog";
 import { PlusCircle } from "lucide-react";
 import { useState } from "react";
@@ -23,9 +26,11 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 export default function AddUserModal() {
   const [open, setOpen] = useState(false);
   const form = useForm();
+  const dispatch = useAppDispatch();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     console.log(data);
+    dispatch(addUser(data as TUser));
     form.reset();
     setOpen(false);
   };
@@ -48,7 +53,7 @@ export default function AddUserModal() {
           <form className="space-y-2" onSubmit={form.handleSubmit(onSubmit)}>
             <FormField
               control={form.control}
-              name="title"
+              name="name"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Name</FormLabel>
