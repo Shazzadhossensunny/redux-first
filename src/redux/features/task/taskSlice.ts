@@ -1,6 +1,7 @@
 import { RootState } from "@/redux/store";
 import { TFilter, TTask } from "@/type";
 import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
+import { deleteUser } from "../user/userSlice";
 
 type TInitialState = {
   tasks: TTask[];
@@ -64,6 +65,13 @@ const taskSlice = createSlice({
     updateFilter: (state, action: PayloadAction<TFilter>) => {
       state.filter = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(deleteUser, (state, action) => {
+      state.tasks.forEach((task) =>
+        task.assignedTo === action.payload ? (task.assignedTo = null) : task
+      );
+    });
   },
 });
 //this is best way to selector send
