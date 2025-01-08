@@ -29,7 +29,6 @@ export default function AddUserModal() {
   const dispatch = useAppDispatch();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
     dispatch(addUser(data as TUser));
     form.reset();
     setOpen(false);
