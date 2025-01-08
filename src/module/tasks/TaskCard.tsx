@@ -7,15 +7,20 @@ import {
   deleteTask,
   toggleTaskComplete,
 } from "@/redux/features/task/taskSlice";
+import { useAppSelector } from "@/redux/hook";
+import { userSelector } from "@/redux/features/user/userSlice";
 
 export const TaskCard = ({ task }: { task: TTask }) => {
   const dispatch = useDispatch();
+  const users = useAppSelector(userSelector);
+  const assignUser = users.find((user) => user.id === task.assignedTo);
   const handleCheck = (id: string) => {
     dispatch(toggleTaskComplete(id));
   };
   const handleDelete = (id: string) => {
     dispatch(deleteTask(id));
   };
+
   return (
     <div className="border rounded-lg shadow-md p-4 flex items-start gap-4">
       <div className="flex flex-1 gap-2">
@@ -42,6 +47,9 @@ export const TaskCard = ({ task }: { task: TTask }) => {
             {task.title}
           </h3>
           <p className="text-sm text-gray-600">{task.description}</p>
+          <p className="text-sm text-gray-600">
+            Assign To - {assignUser ? assignUser.name : "No one"}
+          </p>
           {/* <div className="mt-2 flex justify-between text-sm">
             <span>
               <strong>Status:</strong> {task.isCompleted}

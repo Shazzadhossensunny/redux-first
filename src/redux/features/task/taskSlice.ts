@@ -17,12 +17,16 @@ const initialState: TInitialState = {
         "Prepare and finalize all documentation related to the project, including technical specifications and user guides.",
       priority: "High",
       dueDate: "2025-01-09T18:00:00.000Z",
+      assignedTo: null,
     },
   ],
   filter: "All",
 };
 
-type draftTask = Pick<TTask, "title" | "description" | "dueDate" | "priority">;
+type draftTask = Pick<
+  TTask,
+  "title" | "description" | "dueDate" | "priority" | "assignedTo"
+>;
 
 const createTask = (taskData: draftTask): TTask => {
   return { id: nanoid(), isCompleted: false, ...taskData };

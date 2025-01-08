@@ -6,7 +6,16 @@ type InitialState = {
   users: TUser[];
 };
 const initialState: InitialState = {
-  users: [],
+  users: [
+    {
+      name: "sunny",
+      id: "tf6QtyF9jGuxNfykAAXPG",
+    },
+    {
+      name: "rohim",
+      id: "dy9bdenzfsXxU0kUigJcO",
+    },
+  ],
 };
 
 export const userSlice = createSlice({

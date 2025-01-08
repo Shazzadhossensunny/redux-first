@@ -5,6 +5,7 @@ export type TTask = {
   isCompleted: boolean;
   priority: "Low" | "Medium" | "High";
   dueDate: string;
+  assignedTo: string | null;
 };
 
 export type TFilter = "All" | "High" | "Medium" | "Low";

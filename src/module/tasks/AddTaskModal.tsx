@@ -32,6 +32,8 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { addTask } from "@/redux/features/task/taskSlice";
+import { userSelector } from "@/redux/features/user/userSlice";
+import { useAppSelector } from "@/redux/hook";
 import { TTask } from "@/type";
 import { format } from "date-fns";
 
@@ -44,6 +46,7 @@ export const AddTaskModal = () => {
   const [open, setOpen] = useState(false);
   const form = useForm();
   const dispatch = useDispatch();
+  const users = useAppSelector(userSelector);
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     dispatch(addTask(data as TTask));
@@ -118,6 +121,32 @@ export const AddTaskModal = () => {
                       <SelectItem value="High">High</SelectItem>
                       <SelectItem value="Medium">Medium</SelectItem>
                       <SelectItem value="Low">Low</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="assignedTo"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Assign To</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Assign a user" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {users.map((user) => (
+                        <SelectItem key={user.id} value={user.id}>
+                          {user.name}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                 </FormItem>
