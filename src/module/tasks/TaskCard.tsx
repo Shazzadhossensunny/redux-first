@@ -9,6 +9,7 @@ import {
 } from "@/redux/features/task/taskSlice";
 import { useAppSelector } from "@/redux/hook";
 import { userSelector } from "@/redux/features/user/userSlice";
+import EditTaskModal from "./EditTaskModal";
 
 export const TaskCard = ({ task }: { task: TTask }) => {
   const dispatch = useDispatch();
@@ -63,6 +64,7 @@ export const TaskCard = ({ task }: { task: TTask }) => {
 
       {/* Actions */}
       <div className="flex items-center gap-2">
+        <EditTaskModal task={task} />
         <button
           onClick={() => handleDelete(task.id)}
           className="text-red-500 hover:text-red-700"

@@ -57,11 +57,13 @@ const taskSlice = createSlice({
     deleteTask: (state, action: PayloadAction<string>) => {
       state.tasks = state.tasks.filter((task) => task.id !== action.payload);
     },
-    // updateTask: (state, action) => {
-    //   state.tasks.forEach((task) =>
-    //     task.id === action.payload.id ? { ...task, task } : task
-    //   );
-    // },
+    updateTask: (state, action) => {
+      console.log(action.payload);
+      const updateTask = action.payload;
+      state.tasks = state.tasks.map((task) =>
+        task.id === action.payload.id ? { ...task, ...updateTask } : task
+      );
+    },
     updateFilter: (state, action: PayloadAction<TFilter>) => {
       state.filter = action.payload;
     },
@@ -93,7 +95,12 @@ export const filterSelector = (state: RootState) => {
   return state.todo.filter;
 };
 
-export const { addTask, toggleTaskComplete, deleteTask, updateFilter } =
-  taskSlice.actions;
+export const {
+  addTask,
+  toggleTaskComplete,
+  deleteTask,
+  updateFilter,
+  updateTask,
+} = taskSlice.actions;
 
 export default taskSlice.reducer;
