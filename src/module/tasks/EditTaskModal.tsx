@@ -31,7 +31,7 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
-import { addTask, updateTask } from "@/redux/features/task/taskSlice";
+import { updateTask } from "@/redux/features/task/taskSlice";
 import { userSelector } from "@/redux/features/user/userSlice";
 import { useAppSelector } from "@/redux/hook";
 import { TTask } from "@/type";
@@ -51,14 +51,13 @@ export default function EditTaskModal({ task }: { task: TTask }) {
     defaultValues: {
       title: task.title || "",
       description: task.description || "",
-      priority: task.priority || "Medium", // Default priority if not provided
+      priority: task.priority || "Medium",
       assignedTo: task.assignedTo || "",
       dueDate: task.dueDate ? new Date(task.dueDate) : null, // Convert dueDate to Date object if available
     },
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
     dispatch(updateTask({ id: task.id, ...data }));
     form.reset();
     setOpen(false);

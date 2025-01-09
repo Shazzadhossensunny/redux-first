@@ -58,7 +58,6 @@ const taskSlice = createSlice({
       state.tasks = state.tasks.filter((task) => task.id !== action.payload);
     },
     updateTask: (state, action) => {
-      console.log(action.payload);
       const updateTask = action.payload;
       state.tasks = state.tasks.map((task) =>
         task.id === action.payload.id ? { ...task, ...updateTask } : task
